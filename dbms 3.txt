@@ -1,0 +1,245 @@
+mysql> select * from bank;
++-------------+--------+-----------+---------+------------+
+| customer_id | name   | accountno | balance | branch     |
++-------------+--------+-----------+---------+------------+
+|          10 | arun   |       190 |    4367 | chennai    |
+|          11 | sai    |       200 |    4568 | hyderabad  |
+|          12 | nithin |       210 |    2345 | vijayawada |
+|          13 | ram    |       220 |    2145 | delhi      |
++-------------+--------+-----------+---------+------------+
+4 rows in set (0.00 sec)
+
+mysql> update bank set name='ramya' where customer_id=12;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from bank;
++-------------+-------+-----------+---------+------------+
+| customer_id | name  | accountno | balance | branch     |
++-------------+-------+-----------+---------+------------+
+|          10 | arun  |       190 |    4367 | chennai    |
+|          11 | sai   |       200 |    4568 | hyderabad  |
+|          12 | ramya |       210 |    2345 | vijayawada |
+|          13 | ram   |       220 |    2145 | delhi      |
++-------------+-------+-----------+---------+------------+
+4 rows in set (0.00 sec)
+
+mysql> update bank set name='nithin' where customer_id=11;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from bank;
++-------------+--------+-----------+---------+------------+
+| customer_id | name   | accountno | balance | branch     |
++-------------+--------+-----------+---------+------------+
+|          10 | arun   |       190 |    4367 | chennai    |
+|          11 | nithin |       200 |    4568 | hyderabad  |
+|          12 | ramya  |       210 |    2345 | vijayawada |
+|          13 | ram    |       220 |    2145 | delhi      |
++-------------+--------+-----------+---------+------------+
+4 rows in set (0.00 sec)
+
+mysql> create table worker(wid int primary key,name varchar(10),phoneno int,foreign key(wid) references employee(eid));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc worker;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| wid     | int         | NO   | PRI | NULL    |       |
+| name    | varchar(10) | YES  |     | NULL    |       |
+| phoneno | int         | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from worker;
+Empty set (0.00 sec)
+
+mysql> insert into worker values(10,'pooj',786905432);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from worker;
++-----+------+-----------+
+| wid | name | phoneno   |
++-----+------+-----------+
+|  10 | pooj | 786905432 |
++-----+------+-----------+
+1 row in set (0.00 sec;
+
+mysql>  desc worker;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| wid     | int         | NO   | PRI | NULL    |       |
+| name    | varchar(10) | YES  |     | NULL    |       |
+| phoneno | int         | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> desc employee;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| eid    | int         | NO   | PRI | NULL    |       |
+| ename  | varchar(10) | YES  |     | NULL    |       |
+| desig  | varchar(10) | YES  |     | NULL    |       |
+| branch | varchar(10) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+mysql> select* from worker;
++-----+------+-----------+
+| wid | name | phoneno   |
++-----+------+-----------+
+|  10 | pooj | 786905432 |
++-----+------+-----------+
+1 row in set (0.02 sec)
+
+mysql> select* from employee;
++-----+--------+---------+--------+
+| eid | ename  | desig   | branch |
++-----+--------+---------+--------+
+|  10 | nithin | manager | cse    |
++-----+--------+---------+--------+
+1 row in set (0.01 sec)
+
+mysql> select eid*2 as eid,ename,desig from employee;
++-----+--------+---------+
+| eid | ename  | desig   |
++-----+--------+---------+
+|  20 | nithin | manager |
++-----+--------+---------+
+1 row in set (0.00 sec)
+mysql> select* from rasengan;
+Empty set (0.03 sec)
+
+mysql> select* from bank;
++-------------+--------+-----------+---------+------------+
+| customer_id | name   | accountno | balance | branch     |
++-------------+--------+-----------+---------+------------+
+|          10 | arun   |       190 |    4367 | chennai    |
+|          11 | nithin |       200 |    4568 | hyderabad  |
+|          12 | ramya  |       210 |    2345 | vijayawada |
+|          13 | ram    |       220 |    2145 | delhi      |
++-------------+--------+-----------+---------+------------+
+4 rows in set (0.03 sec)
+
+mysql> select* from bank where balance <=3000;
++-------------+-------+-----------+---------+------------+
+| customer_id | name  | accountno | balance | branch     |
++-------------+-------+-----------+---------+------------+
+|          12 | ramya |       210 |    2345 | vijayawada |
+|          13 | ram   |       220 |    2145 | delhi      |
++-------------+-------+-----------+---------+------------+
+2 rows in set (0.00 sec)
+
+mysql> show tables;
++---------------------------+
+| Tables_in_employeedetails |
++---------------------------+
+| bank                      |
+| employee                  |
+| rasengan                  |
+| worker                    |
++---------------------------+
+4 rows in set (0.00 sec)
+mysql> alter table rasengan rename to employee_id;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> show tables;
++---------------------------+
+| Tables_in_employeedetails |
++---------------------------+
+| bank                      |
+| employee                  |
+| employee_id               |
+| worker                    |
++---------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from bank order by lcase(name);
++-------------+--------+-----------+---------+------------+
+| customer_id | name   | accountno | balance | branch     |
++-------------+--------+-----------+---------+------------+
+|          10 | arun   |       190 |    4367 | chennai    |
+|          11 | nithin |       200 |    4568 | hyderabad  |
+|          13 | ram    |       220 |    2145 | delhi      |
+|          12 | ramya  |       210 |    2345 | vijayawada |
++-------------+--------+-----------+---------+------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from bank order by accountno desc;
++-------------+--------+-----------+---------+------------+
+| customer_id | name   | accountno | balance | branch     |
++-------------+--------+-----------+---------+------------+
+|          13 | ram    |       220 |    2145 | delhi      |
+|          12 | ramya  |       210 |    2345 | vijayawada |
+|          11 | nithin |       200 |    4568 | hyderabad  |
+|          10 | arun   |       190 |    4367 | chennai    |
++-------------+--------+-----------+---------+------------+
+4 rows in set (0.00 sec)
+mysql> select distinct balance from bank;
++---------+
+| balance |
++---------+
+|    4367 |
+|    4568 |
+|    2345 |
+|    2145 |
++---------+
+4 rows in set (0.00 sec)
+
+mysql> select count(distinct balance) from bank;
++-------------------------+
+| count(distinct balance) |
++-------------------------+
+|                       4 |
++-------------------------+
+1 row in set (0.01 sec)
+
+
+mysql> desc employee;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| eid    | int         | NO   | PRI | NULL    |       |
+| ename  | varchar(10) | YES  |     | NULL    |       |
+| desig  | varchar(10) | YES  |     | NULL    |       |
+| branch | varchar(10) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+select * from employee' at line 1
+mysql> select * from employee;
++-----+--------+---------+--------+
+| eid | ename  | desig   | branch |
++-----+--------+---------+--------+
+|  10 | nithin | manager | cse    |
++-----+--------+---------+--------+
+1 row in set (0.02 sec)
+
+select * b' at line 1
+mysql> select * from bank;
++-------------+--------+-----------+---------+------------+
+| customer_id | name   | accountno | balance | branch     |
++-------------+--------+-----------+---------+------------+
+|          10 | arun   |       190 |    4367 | chennai    |
+|          11 | nithin |       200 |    4568 | hyderabad  |
+|          12 | ramya  |       210 |    2345 | vijayawada |
+|          13 | ram    |       220 |    2145 | delhi      |
++-------------+--------+-----------+---------+------------+
+4 rows in set (0.01 sec)
+
+mysql> insert into bank values(15,'sai',240,4568,'hyderabad');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from bank;
++-------------+--------+-----------+---------+------------+
+| customer_id | name   | accountno | balance | branch     |
++-------------+--------+-----------+---------+------------+
+|          10 | arun   |       190 |    4367 | chennai    |
+|          11 | nithin |       200 |    4568 | hyderabad  |
+|          12 | ramya  |       210 |    2345 | vijayawada |
+|          13 | ram    |       220 |    2145 | delhi      |
+|          15 | sai    |       240 |    4568 | hyderabad  |
++-------------+--------+-----------+---------+------------+
+5 rows in set (0.00 sec)

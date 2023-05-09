@@ -1,0 +1,70 @@
+
+mysql> select * from bank;
++-------------+--------+-----------+---------+------------+
+| customer_id | name   | accountno | balance | branch     |
++-------------+--------+-----------+---------+------------+
+|          10 | arun   |       190 |    4367 | chennai    |
+|          11 | nithin |       200 |    4568 | hyderabad  |
+|          12 | ramya  |       210 |    2345 | vijayawada |
+|          13 | ram    |       220 |    2145 | delhi      |
+|          15 | sai    |       240 |    4568 | hyderabad  |
++-------------+--------+-----------+---------+------------+
+5 rows in set (0.01 sec)
+
+mysql>
+mysql>
+mysql> select * from bank group by  accountno having  balance >4000;
++-------------+--------+-----------+---------+-----------+
+| customer_id | name   | accountno | balance | branch    |
++-------------+--------+-----------+---------+-----------+
+|          10 | arun   |       190 |    4367 | chennai   |
+|          11 | nithin |       200 |    4568 | hyderabad |
+|          15 | sai    |       240 |    4568 | hyderabad |
++-------------+--------+-----------+---------+-----------+
+3 rows in set (0.01 sec)
+
+mysql> select accountno,balance from bank  group by accountno,balance;
++-----------+---------+
+| accountno | balance |
++-----------+---------+
+|       190 |    4367 |
+|       200 |    4568 |
+|       210 |    2345 |
+|       220 |    2145 |
+|       240 |    4568 |
++-----------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select accountno,balance from bank  group by accountno,balance>4000;
++-----------+---------+
+| accountno | balance |
++-----------+---------+
+|       190 |    4367 |
+|       200 |    4568 |
+|       210 |    2345 |
+|       220 |    2145 |
+|       240 |    4568 |
++-----------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select accountno,balance from bank  group by accountno,balance having balance<4000
+    ->
+    -> select accountno,balance from bank  group by accountno,balance having balance<4000;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select accountno,balance from bank  group by accountno,balance having balance<40' at line 3
+mysql> select accountno,balance from bank  group by accountno,balance having balance<4000;
++-----------+---------+
+| accountno | balance |
++-----------+---------+
+|       210 |    2345 |
+|       220 |    2145 |
++-----------+---------+
+2 rows in set (0.00 sec)
+
+mysql> select accountno,balance from bank  group by accountno,balance having balance<=4000;
++-----------+---------+
+| accountno | balance |
++-----------+---------+
+|       210 |    2345 |
+|       220 |    2145 |
++-----------+---------+
+2 rows in set (0.00 sec)

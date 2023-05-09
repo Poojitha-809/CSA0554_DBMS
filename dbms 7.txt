@@ -1,0 +1,65 @@
+
+
+
+
+
+
+
+mysql> select * from bank where bank =  (select max(balance)from bank);
+ERROR 1054 (42S22): Unknown column 'bank' in 'where clause'
+mysql> select * from bank where balance =  (select max(balance)from bank);
++-------------+--------+-----------+---------+-----------+
+| customer_id | name   | accountno | balance | branch    |
++-------------+--------+-----------+---------+-----------+
+|          11 | nithin |       200 |    4568 | hyderabad |
+|          15 | sai    |       240 |    4568 | hyderabad |
++-------------+--------+-----------+---------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> select * from bank;
++-------------+--------+-----------+---------+------------+
+| customer_id | name   | accountno | balance | branch     |
++-------------+--------+-----------+---------+------------+
+|          10 | arun   |       190 |    4367 | chennai    |
+|          11 | nithin |       200 |    4568 | hyderabad  |
+|          12 | ramya  |       210 |    2345 | vijayawada |
+|          13 | ram    |       220 |    2145 | delhi      |
+|          15 | sai    |       240 |    4568 | hyderabad  |
++-------------+--------+-----------+---------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select customer_id,name from bank where accountno in
+    -> (select accountno from bank where balance in(2345,4568));
++-------------+--------+
+| customer_id | name   |
++-------------+--------+
+|          11 | nithin |
+|          12 | ramya  |
+|          15 | sai    |
++-------------+--------+
+3 rows in set (0.00 sec)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

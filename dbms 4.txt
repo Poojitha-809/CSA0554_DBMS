@@ -1,0 +1,106 @@
+mysql> select * from bank where name like 'r_m';
++-------------+------+-----------+---------+--------+
+| customer_id | name | accountno | balance | branch |
++-------------+------+-----------+---------+--------+
+|          13 | ram  |       220 |    2145 | delhi  |
++-------------+------+-----------+---------+--------+
+1 row in set (0.01 sec)
+
+mysql> select * from bank where balance like '4_6_';
++-------------+--------+-----------+---------+-----------+
+| customer_id | name   | accountno | balance | branch    |
++-------------+--------+-----------+---------+-----------+
+|          10 | arun   |       190 |    4367 | chennai   |
+|          11 | nithin |       200 |    4568 | hyderabad |
+|          15 | sai    |       240 |    4568 | hyderabad |
++-------------+--------+-----------+---------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> select * from bank where name like 'r_m%';
++-------------+-------+-----------+---------+------------+
+| customer_id | name  | accountno | balance | branch     |
++-------------+-------+-----------+---------+------------+
+|          12 | ramya |       210 |    2345 | vijayawada |
+|          13 | ram   |       220 |    2145 | delhi      |
++-------------+-------+-----------+---------+------------+
+2 rows in set (0.00 sec)
+
+mysql>  select * from bank where customer_id between 10 and 12;
++-------------+--------+-----------+---------+------------+
+| customer_id | name   | accountno | balance | branch     |
++-------------+--------+-----------+---------+------------+
+|          10 | arun   |       190 |    4367 | chennai    |
+|          11 | nithin |       200 |    4568 | hyderabad  |
+|          12 | ramya  |       210 |    2345 | vijayawada |
++-------------+--------+-----------+---------+------------+
+3 rows in set (0.00 sec)
+
+mysql>  select * from bank where customer_id not  between 10 and 12;
++-------------+------+-----------+---------+-----------+
+| customer_id | name | accountno | balance | branch    |
++-------------+------+-----------+---------+-----------+
+|          13 | ram  |       220 |    2145 | delhi     |
+|          15 | sai  |       240 |    4568 | hyderabad |
++-------------+------+-----------+---------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> select * from bank where balance between 2145 and 4367  in(10,11,12);
+Empty set (0.00 sec)
+
+mysql> select * from bank where balance between 2145 and 4367  and  customer_id in (11,12,13);
++-------------+-------+-----------+---------+------------+
+| customer_id | name  | accountno | balance | branch     |
++-------------+-------+-----------+---------+------------+
+|          12 | ramya |       210 |    2345 | vijayawada |
+|          13 | ram   |       220 |    2145 | delhi      |
++-------------+-------+-----------+---------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from bank where balance between 2145 and 4367  and  customer_id not in (11,12,13);
++-------------+------+-----------+---------+---------+
+| customer_id | name | accountno | balance | branch  |
++-------------+------+-----------+---------+---------+
+|          10 | arun |       190 |    4367 | chennai |
++-------------+------+-----------+---------+---------+
+1 row in set (0.00 sec)
+
+
+mysql> select * from bank where balance between 2145 and 4367  and  customer_id  in (11,12,13) order  by name desc;
++-------------+-------+-----------+---------+------------+
+| customer_id | name  | accountno | balance | branch     |
++-------------+-------+-----------+---------+------------+
+|          12 | ramya |       210 |    2345 | vijayawada |
+|          13 | ram   |       220 |    2145 | delhi      |
++-------------+-------+-----------+---------+------------+
+2 rows in set (0.01 sec)
+
+mysql> select * from bank where branch between 'chennai' and 'hyderabad'  and  customer_id  in (11,12,13) order  by name desc;
++-------------+--------+-----------+---------+-----------+
+| customer_id | name   | accountno | balance | branch    |
++-------------+--------+-----------+---------+-----------+
+|          13 | ram    |       220 |    2145 | delhi     |
+|          11 | nithin |       200 |    4568 | hyderabad |
++-------------+--------+-----------+---------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> select * from bank where branch between 'chennai' and 'hyderabad'  and  customer_id  in (10,11,12,13) order  by name desc;
++-------------+--------+-----------+---------+-----------+
+| customer_id | name   | accountno | balance | branch    |
++-------------+--------+-----------+---------+-----------+
+|          13 | ram    |       220 |    2145 | delhi     |
+|          11 | nithin |       200 |    4568 | hyderabad |
+|          10 | arun   |       190 |    4367 | chennai   |
++-------------+--------+-----------+---------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> select * from bank;
++-------------+--------+-----------+---------+------------+
+| customer_id | name   | accountno | balance | branch     |
++-------------+--------+-----------+---------+------------+
+|          10 | arun   |       190 |    4367 | chennai    |
+|          11 | nithin |       200 |    4568 | hyderabad  |
+|          12 | ramya  |       210 |    2345 | vijayawada |
+|          13 | ram    |       220 |    2145 | delhi      |
+|          15 | sai    |       240 |    4568 | hyderabad  |
++-------------+--------+-----------+---------+------------+
+5 rows in set (0.00 sec)

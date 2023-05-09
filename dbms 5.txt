@@ -1,0 +1,77 @@
+mysql> select count(name) from bank;
++-------------+
+| count(name) |
++-------------+
+|           5 |
++-------------+
+1 row in set (0.01 sec)
+
+mysql> select max(name) from bank;
++-----------+
+| max(name) |
++-----------+
+| sai       |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select min(name) from bank;
++-----------+
+| min(name) |
++-----------+
+| arun      |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select avg(name) from bank;
++-----------+
+| avg(name) |
++-----------+
+|         0 |
++-----------+
+1 row in set, 5 warnings (0.00 sec)
+
+mysql> select count(branch) from bank group by branch;
++---------------+
+| count(branch) |
++---------------+
+|             1 |
+|             2 |
+|             1 |
+|             1 |
++---------------+
+4 rows in set (0.00 sec)
+
+mysql> select count(branch),branch from bank group by branch;
++---------------+------------+
+| count(branch) | branch     |
++---------------+------------+
+|             1 | chennai    |
+|             2 | hyderabad  |
+|             1 | vijayawada |
+|             1 | delhi      |
++---------------+------------+
+4 rows in set (0.00 sec)
+
+mysql> select count(branch),branch from bank group by branch order br branch desc;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'br branch desc' at line 1
+mysql> select count(branch),branch from bank group by branch order by branch desc;
++---------------+------------+
+| count(branch) | branch     |
++---------------+------------+
+|             1 | vijayawada |
+|             2 | hyderabad  |
+|             1 | delhi      |
+|             1 | chennai    |
++---------------+------------+
+4 rows in set (0.00 sec)
+
+mysql> select count(branch),branch from bank group by branch order by branch desc;
++---------------+------------+
+| count(branch) | branch     |
++---------------+------------+
+|             1 | vijayawada |
+|             2 | hyderabad  |
+|             1 | delhi      |
+|             1 | chennai    |
++---------------+------------+
+4 rows in set (0.00 sec)

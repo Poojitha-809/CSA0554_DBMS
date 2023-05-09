@@ -1,0 +1,36 @@
+mysql> insert into employee values(10,'nithin','manager','cse');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> desc employee;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| eid    | int         | NO   | PRI | NULL    |       |
+| ename  | varchar(10) | YES  |     | NULL    |       |
+| desig  | varchar(10) | YES  |     | NULL    |       |
+| branch | varchar(10) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select * from employee;
++-----+--------+---------+--------+
+| eid | ename  | desig   | branch |
++-----+--------+---------+--------+
+|  10 | nithin | manager | cse    |
++-----+--------+---------+--------+
+1 row in set (0.00 sec)
+mysql> insert into bank values(10,'arun',190,4367,'chennai');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from bank;
++-------------+------+-----------+---------+---------+
+| customer_id | name | accountno | balance | branch  |
++-------------+------+-----------+---------+---------+
+|          10 | arun |       190 |    4367 | chennai |
++-------------+------+-----------+---------+---------+
+1 row in set (0.00 sec)
+
+
+mysql> insert into bank(customer_id,name,accountno,balance,branch) values(11,'sai',200,4568,'hyderabad'),(12,'nithin',210,2345,'vijayawada'),(13,'ram',220,2145,'banglore');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
